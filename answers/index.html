@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GimGenius Answers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #16213e;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #f5a623;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #38ada9;
+        }
+
+        .answers-list {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #0f3460;
+            border-radius: 12px;
+        }
+
+        .answers-list h2 {
+            color: #38ada9;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .answers-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .answers-list ul li {
+            background-color: #16213e;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 1.2em;
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .answers-list ul li:hover {
+            background-color: #38ada9;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f5a623;
+            color: #1a1a2e;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span>Gim</span>Genius Answers</h1>
+        <p id="gameCodeDisplay" style="font-size: 1.5em;">Answers for Code: <strong id="gameCode">N/A</strong></p>
+
+        <div class="answers-list">
+            <h2>Correct Answers:</h2>
+            <ul id="answerList">
+                <!-- Answers will be dynamically inserted here -->
+            </ul>
+        </div>
+
+        <a href="/" class="back-link">Go Back to Main Page</a>
+    </div>
+
+    <script>
+        // Simulating GimKit Answers based on code (this can be replaced with dynamic data fetching)
+        const answers = {
+            "12345": ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
+            "54321": ["Answer A", "Answer B", "Answer C", "Answer D"],
+            "99999": ["Alpha", "Bravo", "Charlie", "Delta"],
+            "default": ["No answers available for this code."]
+        };
+
+        // Fetch the GimKit code from URL
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        const gameCode = getParameterByName('code') || "N/A";
+        document.getElementById('gameCode').innerText = gameCode;
+
+        // Display answers based on the code
+        const answerList = document.getElementById('answerList');
+        const answersForCode = answers[gameCode] || answers['default'];
+
+        answersForCode.forEach(answer => {
+            const listItem = document.createElement('li');
+            listItem.innerText = answer;
+            answerList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
