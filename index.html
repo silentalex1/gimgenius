@@ -188,7 +188,7 @@
 
         <div class="section">
             <h2>Guide</h2>
-            <p>This tool is built to provide you with the answers to active GimKit sessions. Use it wisely to gain an edge, but keep fairness in mind!</p>
+            <p>This tool is built to provide you with the answers to active GimKit sessions. Use it wisely to gain an edge</p>
         </div>
 
         <footer>&copy; 2024 GimGenius | All Rights Reserved</footer>
@@ -198,7 +198,8 @@
         function submitCode() {
             const code = document.getElementById('gimkitCode').value;
             if (code) {
-                window.location.href = `gimgenius.us/answers?code=${code}`;
+                // Redirect to the /answers page without hardcoding the domain name
+                window.location.href = `/answers?code=${code}`;
             } else {
                 alert('Please enter a valid GimKit code.');
             }
