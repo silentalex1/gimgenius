@@ -32,6 +32,58 @@
             text-transform: uppercase;
         }
 
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #f5f5f5;
+            font-size: 1.1em;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            background-color: #f39c12;
+            color: #0f0f0f;
+        }
+
+        .hero {
+            background: url('https://source.unsplash.com/1600x600/?gaming') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero h2 {
+            font-size: 3.5em;
+            color: #f5f5f5;
+            z-index: 1;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
         .model-select {
             margin: 20px auto;
             text-align: center;
@@ -86,7 +138,19 @@
 
     <header>
         <h1>Nex Network AI</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Cheats</a></li>
+                <li><a href="#">Mods</a></li>
+                <li><a href="#">Dev Tools</a></li>
+                <li><a href="#">Community</a></li>
+            </ul>
+        </nav>
     </header>
+
+    <section class="hero">
+        <h2>Unlock Your Gaming Potential with Cheats, Mods & Dev Tools</h2>
+    </section>
 
     <div class="model-select">
         <select id="model-select">
@@ -121,7 +185,7 @@
                 });
 
                 const data = await response.json();
-                alert(data.response); // Display the response (for simplicity, using alert)
+                alert(data.response);
             } catch (error) {
                 console.error('Error:', error);
                 alert('There was an error processing your request.');
