@@ -181,34 +181,40 @@
     </footer>
 
     <script>
-        function generateText() {
+        async function generateText() {
             const prompt = document.getElementById('userPrompt').value;
             const model = document.getElementById('modelSelector').value;
 
-            fetch('/generate_text', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt, model })
-            })
-            .then(response => response.json())
-            .then(data => {
+            try {
+                const response = await fetch('/generate_text', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt, model })
+                });
+
+                const data = await response.json();
                 document.getElementById('textOutput').innerText = data.response;
-            });
+            } catch (error) {
+                document.getElementById('textOutput').innerText = 'Error generating text. Please try again.';
+            }
         }
 
-        function generateImage() {
+        async function generateImage() {
             const prompt = document.getElementById('userPrompt').value;
             const model = document.getElementById('modelSelector').value;
 
-            fetch('/generate_image', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt, model })
-            })
-            .then(response => response.json())
-            .then(data => {
+            try {
+                const response = await fetch('/generate_image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt, model })
+                });
+
+                const data = await response.json();
                 document.getElementById('imageOutput').innerHTML = `<img src="${data.image_url}" alt="Generated Image">`;
-            });
+            } catch (error) {
+                document.getElementById('imageOutput').innerText = 'Error generating image. Please try again.';
+            }
         }
     </script>
 
