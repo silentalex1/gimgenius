@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nex Network AI</title>
     <style>
-        /* Reset */
+        /* General Styling Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* General Styling */
+        /* Body Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1a1a1a;
-            color: #f5f5f5;
+            background-color: #121212;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -25,12 +25,14 @@
             padding: 20px;
         }
 
+        /* Title */
         h1 {
             font-size: 3rem;
             color: #ff9800;
             margin-bottom: 20px;
         }
 
+        /* Container */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -38,12 +40,13 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            background: #212121;
+            background: #1f1f1f;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             margin-top: 20px;
         }
 
+        /* Model Selector */
         .model-selector, .input-field {
             width: 100%;
             max-width: 600px;
@@ -56,7 +59,7 @@
             font-size: 1.2em;
             border-radius: 10px;
             border: none;
-            background-color: #2c2c2c;
+            background-color: #2a2a2a;
             color: #ff9800;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
@@ -66,13 +69,14 @@
             outline: none;
         }
 
+        /* Buttons */
         button {
             background-color: #ff9800;
             padding: 15px 30px;
             border: none;
             border-radius: 30px;
             font-size: 1.1em;
-            color: #fff;
+            color: #ffffff;
             cursor: pointer;
             transition: background 0.3s ease;
             margin-top: 20px;
@@ -83,6 +87,7 @@
             background-color: #ff3d00;
         }
 
+        /* Output Section */
         .output-section {
             width: 100%;
             max-width: 800px;
@@ -95,7 +100,7 @@
         }
 
         #textOutput, #imageOutput {
-            background-color: #2c2c2c;
+            background-color: #2a2a2a;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -103,7 +108,7 @@
         }
 
         #textOutput {
-            color: #fff;
+            color: #ffffff;
             font-family: 'Courier New', monospace;
         }
 
@@ -112,9 +117,10 @@
             border-radius: 10px;
         }
 
+        /* Footer */
         footer {
             margin-top: 50px;
-            color: #aaa;
+            color: #aaaaaa;
             font-size: 0.9em;
             text-align: center;
         }
@@ -128,6 +134,7 @@
             text-decoration: underline;
         }
 
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -138,7 +145,7 @@
             }
 
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .model-selector select, .input-field input {
