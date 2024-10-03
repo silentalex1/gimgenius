@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIM Genius: Hacks, Mods, & Dev Tools</title>
     <style>
+        /* General Styling */
         * {
             margin: 0;
             padding: 0;
@@ -12,28 +13,36 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0e0e0e;
+            color: #f5f5f5;
             line-height: 1.6;
         }
 
+        /* Smooth transitions */
+        a, button, input {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Header */
         header {
-            background: #333;
-            padding: 20px;
+            background: linear-gradient(135deg, #1f1c18, #2e2a2b);
+            padding: 20px 0;
             text-align: center;
         }
 
         header h1 {
+            font-size: 3.5em;
             color: #f39c12;
-            font-size: 3em;
-            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         nav ul {
-            list-style: none;
             display: flex;
             justify-content: center;
+            list-style: none;
+            margin-top: 10px;
         }
 
         nav ul li {
@@ -41,60 +50,82 @@
         }
 
         nav ul li a {
-            color: #fff;
-            text-decoration: none;
+            color: #f5f5f5;
             font-size: 1.2em;
-            transition: color 0.3s;
+            text-decoration: none;
+            padding: 5px 15px;
+            border-radius: 25px;
+            font-weight: 500;
         }
 
         nav ul li a:hover {
-            color: #f39c12;
+            background-color: #f39c12;
+            color: #0e0e0e;
         }
 
+        /* Hero Section */
         .hero {
             background: url('https://source.unsplash.com/1600x600/?gaming') no-repeat center center/cover;
-            height: 60vh;
+            height: 70vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .hero h2 {
-            font-size: 2.5em;
-            text-shadow: 2px 2px 5px #000;
+            font-size: 3em;
+            color: #f5f5f5;
+            text-align: center;
+            z-index: 1;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
 
+        /* Section Styling */
         .section {
-            padding: 50px 20px;
+            padding: 80px 20px;
             text-align: center;
         }
 
         .section h2 {
-            font-size: 2.2em;
-            margin-bottom: 30px;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #f39c12;
         }
 
         .section p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #ddd;
+            font-size: 1.1em;
+            color: #c2c2c2;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cards {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 30px;
             flex-wrap: wrap;
         }
 
         .card {
-            background-color: #222;
-            width: 300px;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            background-color: #1f1c18;
+            width: 350px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
@@ -103,29 +134,47 @@
 
         .card h3 {
             color: #f39c12;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
         }
 
+        .card p {
+            color: #b5b5b5;
+        }
+
+        /* Search Bar */
         .search-bar {
-            margin-top: 30px;
+            margin-top: 60px;
             display: flex;
             justify-content: center;
         }
 
         .search-bar input {
-            padding: 10px;
-            width: 300px;
-            border-radius: 8px;
-            border: 2px solid #f39c12;
+            padding: 15px;
+            width: 400px;
+            border-radius: 30px;
+            border: none;
             font-size: 1em;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .search-bar input:focus {
+            box-shadow: 0 4px 20px rgba(243, 156, 18, 0.8);
+        }
+
+        /* Footer */
         footer {
-            background-color: #333;
+            background-color: #1f1c18;
             color: #bbb;
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
             margin-top: 50px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            font-size: 1em;
         }
 
         footer a {
@@ -135,6 +184,26 @@
 
         footer a:hover {
             text-decoration: underline;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            .hero h2 {
+                font-size: 2.5em;
+            }
+
+            .search-bar input {
+                width: 80%;
+            }
         }
     </style>
 </head>
@@ -161,15 +230,15 @@
     <!-- Hacks and Mods Section -->
     <section class="section">
         <h2>Explore the Latest Game Hacks & Mods</h2>
-        <p>Find the best hacks, cheats, and mods to take your gaming experience to the next level!</p>
+        <p>Find the most powerful hacks, cheats, and mods to level up your gaming experience!</p>
         <div class="cards">
             <div class="card">
                 <h3>Latest Game Hacks</h3>
-                <p>Download cheats and hacks for the most popular games, updated regularly.</p>
+                <p>Download the newest cheats and hacks for the most popular games, updated frequently.</p>
             </div>
             <div class="card">
                 <h3>Top Game Mods</h3>
-                <p>Customize your favorite games with mods created by our community of developers.</p>
+                <p>Transform your favorite games with the most downloaded mods created by the community.</p>
             </div>
         </div>
     </section>
@@ -177,22 +246,22 @@
     <!-- Dev Tools Section -->
     <section class="section">
         <h2>Game Development Tools & Resources</h2>
-        <p>Get the tools and resources you need to build or mod your own games.</p>
+        <p>Access tutorials, tools, and scripts to help you create or mod your own games effortlessly.</p>
         <div class="cards">
             <div class="card">
                 <h3>Modding Tutorials</h3>
-                <p>Step-by-step guides to help you create your own game mods.</p>
+                <p>Step-by-step tutorials to help you master the art of game modding.</p>
             </div>
             <div class="card">
                 <h3>Dev Tools & Scripts</h3>
-                <p>Download development tools and scripts to streamline your game development process.</p>
+                <p>Download powerful tools and pre-written scripts to speed up your development process.</p>
             </div>
         </div>
     </section>
 
     <!-- Search Bar -->
     <div class="search-bar">
-        <input type="text" placeholder="Search for hacks, mods, or tools...">
+        <input type="text" placeholder="Search for hacks, mods, or dev tools...">
     </div>
 
     <!-- Footer -->
@@ -202,8 +271,7 @@
     </footer>
 
     <script>
-        // Placeholder JS (You can add functionality as needed)
-        console.log("Welcome to GIM Genius!");
+        console.log("Welcome to the new and modern GIM Genius!");
     </script>
 </body>
 </html>
