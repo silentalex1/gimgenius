@@ -5,175 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nex Network AI</title>
     <style>
-        /* General Styling Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            padding: 20px;
+            background-color: #0f0f0f;
+            color: #f5f5f5;
+            line-height: 1.6;
         }
 
-        /* Title Styling */
-        h1 {
-            font-size: 3rem;
-            color: #ff9800;
-            margin-bottom: 20px;
-        }
-
-        /* Container Styling */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            background: #1f1f1f;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            margin-top: 20px;
-        }
-
-        /* Model Selector Styling */
-        .model-selector, .input-field {
-            width: 100%;
-            max-width: 600px;
-            margin: 20px 0;
-        }
-
-        .model-selector select, .input-field input {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2em;
-            border-radius: 10px;
-            border: none;
-            background-color: #2a2a2a;
-            color: #ff9800;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .model-selector select:focus, .input-field input:focus {
-            box-shadow: 0 4px 20px rgba(255, 152, 0, 0.8);
-            outline: none;
-        }
-
-        /* Button Styling */
-        button {
-            background-color: #ff9800;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1em;
-            color: #ffffff;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            margin-top: 20px;
-            width: 200px;
-        }
-
-        button:hover {
-            background-color: #ff3d00;
-        }
-
-        /* Output Section Styling */
-        .output-section {
-            width: 100%;
-            max-width: 800px;
-            margin-top: 40px;
-        }
-
-        .output-section h2 {
-            color: #ff9800;
-            margin-bottom: 20px;
-        }
-
-        #textOutput, #imageOutput {
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            margin-top: 10px;
-        }
-
-        #textOutput {
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
-        }
-
-        #imageOutput img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        /* Footer Styling */
-        footer {
-            margin-top: 50px;
-            color: #aaaaaa;
-            font-size: 0.9em;
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #2e2e2e);
+            padding: 20px 0;
             text-align: center;
         }
 
-        /* Responsive Design */
+        header h1 {
+            font-size: 3.5em;
+            color: #f39c12;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .model-select {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #1f1f1f;
+            color: #f5f5f5;
+        }
+
+        .search-bar {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            padding: 15px;
+            width: 400px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1em;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            color: #bbb;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            button {
-                width: 100%;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .model-selector select, .input-field input {
-                font-size: 1em;
+            .search-bar input {
+                width: 80%;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>Nex Network AI</h1>
+    <header>
+        <h1>Nex Network AI</h1>
+    </header>
 
-    <div class="container">
-        <div class="model-selector">
-            <select id="modelSelector">
-                <option value="gpt">GPT-4</option>
-                <option value="stable_diffusion">Stable Diffusion</option>
-                <option value="dalle">DALL·E</option>
-            </select>
-        </div>
+    <div class="model-select">
+        <select id="model-select">
+            <option value="gpt">GPT</option>
+            <option value="stable_diffusion">Stable Diffusion</option>
+            <option value="dalle">DALL·E</option>
+            <option value="nex_network_ai">Nex Network AI</option>
+        </select>
+    </div>
 
-        <div class="input-field">
-            <input type="text" id="userPrompt" placeholder="Enter your prompt...">
-        </div>
-
-        <button onclick="generateText()">Generate Text</button>
-        <button onclick="generateImage()">Generate Image</button>
-
-        <div class="output-section">
-            <h2>Text Output</h2>
-            <div id="textOutput"></div>
-        </div>
-
-        <div class="output-section">
-            <h2>Image Output</h2>
-            <div id="imageOutput"></div>
-        </div>
+    <div class="search-bar">
+        <input type="text" id="prompt-input" placeholder="Enter your prompt...">
+        <button id="submit-button">Submit</button>
     </div>
 
     <footer>
@@ -181,42 +107,26 @@
     </footer>
 
     <script>
-        async function generateText() {
-            const prompt = document.getElementById('userPrompt').value;
-            const model = document.getElementById('modelSelector').value;
+        document.getElementById('submit-button').addEventListener('click', async () => {
+            const model = document.getElementById('model-select').value;
+            const prompt = document.getElementById('prompt-input').value;
 
             try {
                 const response = await fetch('/generate_text', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({ prompt, model })
                 });
 
                 const data = await response.json();
-                document.getElementById('textOutput').innerText = data.response;
+                alert(data.response); // Display the response (for simplicity, using alert)
             } catch (error) {
-                document.getElementById('textOutput').innerText = 'Error generating text. Please try again.';
+                console.error('Error:', error);
+                alert('There was an error processing your request.');
             }
-        }
-
-        async function generateImage() {
-            const prompt = document.getElementById('userPrompt').value;
-            const model = document.getElementById('modelSelector').value;
-
-            try {
-                const response = await fetch('/generate_image', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt, model })
-                });
-
-                const data = await response.json();
-                document.getElementById('imageOutput').innerHTML = `<img src="${data.image_url}" alt="Generated Image">`;
-            } catch (error) {
-                document.getElementById('imageOutput').innerText = 'Error generating image. Please try again.';
-            }
-        }
+        });
     </script>
-
 </body>
 </html>
