@@ -6,13 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GimGenius</title>
     <style>
-        /* Style for enhanced visuals */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Enhanced styles for a more modern look */
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #1a1a2e;
@@ -35,56 +29,24 @@
             overflow: hidden;
         }
 
-        .container:before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle at center, rgba(255, 159, 64, 0.2), transparent);
-            z-index: 0;
-        }
-
-        .container:after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle at center, rgba(75, 192, 192, 0.2), transparent);
-            z-index: 0;
-        }
-
         h1 {
             font-size: 3em;
             color: #f5a623;
             font-weight: 700;
             margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 span {
-            color: #38ada9;
         }
 
         p {
             font-size: 1.2em;
             color: #dddddd;
             margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
         }
 
         .input-container {
             margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
         }
 
-        .input-container input[type="text"] {
+        .input-container input {
             width: 100%;
             padding: 15px;
             border: none;
@@ -96,7 +58,7 @@
             transition: all 0.3s ease;
         }
 
-        .input-container input[type="text"]:focus {
+        .input-container input:focus {
             background-color: #16213e;
             outline: none;
             box-shadow: 0 0 12px rgba(255, 159, 64, 0.5);
@@ -130,8 +92,6 @@
             border-radius: 12px;
             color: #ffffff;
             text-align: left;
-            position: relative;
-            z-index: 1;
         }
 
         .section h2 {
@@ -149,89 +109,64 @@
             margin-top: 30px;
             font-size: 0.9em;
             color: #999999;
-            position: relative;
-            z-index: 1;
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #38ada9 0%, #f5a623 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .fade-in {
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .error {
+            color: #ff5722;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container fade-in">
-        <h1><span class="gradient-bg">Gim</span>Genius</h1>
-        <p>The Ultimate GimKit Answer Generator</p>
+        <h1>GimGenius</h1>
+        <p>Copy the host ID from the GimKit session</p>
 
         <div class="input-container">
-            <input type="text" id="gimkitCode" placeholder="Enter GimKit code">
+            <input type="text" id="gimkitHostURL" placeholder="Paste the GimKit host URL here">
+            <span class="error" id="errorMsg"></span>
             <br><br>
-            <button class="submit-button" onclick="submitCode()">Submit Code</button>
+            <button class="submit-button" onclick="submitHostURL()">Submit Host URL</button>
         </div>
 
         <div class="section">
-            <h2>How to Use</h2>
-            <p>1. Enter your GimKit game code in the box above.</p>
-            <p>2. Click "Submit Code" to proceed.</p>
-            <p>3. You will be redirected to the answers page for real-time results.</p>
-        </div>
-
-        <div class="section">
-            <h2>Guide</h2>
-            <p>This tool is built to provide you with the answers to active GimKit sessions. Use it wisely to gain an edge</p>
+            <h2>Instructions</h2>
+            <p>1. Go to your active GimKit session as a host.</p>
+            <p>2. Copy the URL that looks like this: <code>https://www.gimkit.com/host?id=YOUR_CODE</code>.</p>
+            <p>3. Paste it into the input field above and hit "Submit Host URL."</p>
+            <p>4. You will be redirected to the answers page for real-time results.</p>
         </div>
 
         <footer>&copy; 2024 GimGenius | All Rights Reserved</footer>
     </div>
 
     <script>
-        function submitCode() {
-            const code = document.getElementById('gimkitCode').value;
-            if (code) {
-                // Construct the GimKit URL
-                const gimkitUrl = `https://www.gimkit.com/join?gc=${code}`;
+        function submitHostURL() {
+            const hostURL = document.getElementById('gimkitHostURL').value;
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.innerText = ''; // Clear previous errors
 
-                // Simulate fetching data from GimKit API
-                fetchGimKitAnswers(gimkitUrl)
-                    .then(answers => {
-                        // Redirect to the /answers page with the code and answers
-                        localStorage.setItem('gimkitAnswers', JSON.stringify(answers));
-                        window.location.href = `/answers?code=${code}`;
-                    })
-                    .catch(() => {
-                        alert('Failed to retrieve answers. Please try again.');
-                    });
+            const hostID = getHostIDFromURL(hostURL);
+
+            if (hostID) {
+                // Redirect to the /answers page with the host ID
+                window.location.href = `/answers?hostId=${hostID}`;
             } else {
-                alert('Please enter a valid GimKit code.');
+                errorMsg.innerText = 'Please provide a valid GimKit host URL.';
             }
         }
 
-        // Simulated function to fetch answers from the GimKit URL
-        function fetchGimKitAnswers(url) {
-            // This function can later be expanded to fetch real data from a backend or API
-            return new Promise((resolve, reject) => {
-                // Simulating an API request delay
-                setTimeout(() => {
-                    // Simulating response data (replace with actual API call)
-                    const answers = {
-                        question1: "Answer 1",
-                        question2: "Answer 2",
-                        question3: "Answer 3",
-                    };
-                    resolve(answers); // Successfully fetch answers
-                }, 1000);
-            });
+        function getHostIDFromURL(url) {
+            // Check if the URL is a valid GimKit host URL
+            const pattern = /^https:\/\/www\.gimkit\.com\/host\?id=([a-zA-Z0-9]+)$/;
+            const match = url.match(pattern);
+
+            if (match && match[1]) {
+                return match[1]; // Return the extracted host ID
+            }
+
+            return null; // Invalid URL
         }
     </script>
 </body>
