@@ -110,7 +110,7 @@
     </div>
 
     <script>
-        // Simulating GimKit Answers based on code (this can be replaced with dynamic data fetching)
+        // Simulating GimKit Answers based on the entered code (can be replaced with real data source)
         const answers = {
             "12345": ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
             "54321": ["Answer A", "Answer B", "Answer C", "Answer D"],
@@ -118,7 +118,7 @@
             "default": ["No answers available for this code."]
         };
 
-        // Fetch the GimKit code from URL
+        // Function to get query parameters from URL
         function getParameterByName(name) {
             const url = window.location.href;
             const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
@@ -128,6 +128,7 @@
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
+        // Retrieve the GimKit code from the URL
         const gameCode = getParameterByName('code') || "N/A";
         document.getElementById('gameCode').innerText = gameCode;
 
@@ -135,6 +136,7 @@
         const answerList = document.getElementById('answerList');
         const answersForCode = answers[gameCode] || answers['default'];
 
+        // Populate the answer list dynamically
         answersForCode.forEach(answer => {
             const listItem = document.createElement('li');
             listItem.innerText = answer;
