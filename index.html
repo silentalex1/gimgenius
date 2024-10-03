@@ -33,7 +33,7 @@
         }
 
         header h1 {
-            font-size: 3.5em;
+            font-size: 2.8em;
             color: #f39c12;
             margin-bottom: 5px;
             letter-spacing: 1px;
@@ -45,10 +45,11 @@
             justify-content: center;
             list-style: none;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            margin: 0 20px;
+            margin: 0 15px;
         }
 
         nav ul li a {
@@ -67,7 +68,7 @@
         /* Hero Section */
         .hero {
             background: url('https://source.unsplash.com/1600x600/?gaming') no-repeat center center/cover;
-            height: 70vh;
+            height: 60vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -86,7 +87,7 @@
         }
 
         .hero h2 {
-            font-size: 3.5em;
+            font-size: 2.8em;
             color: #f5f5f5;
             z-index: 1;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
@@ -197,6 +198,14 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            .hero h2 {
+                font-size: 2.2em;
+            }
+
             .cards {
                 flex-direction: column;
                 align-items: center;
@@ -206,12 +215,22 @@
                 width: 90%;
             }
 
-            .hero h2 {
-                font-size: 2.5em;
+            .search-bar input {
+                width: 90%;
             }
 
-            .search-bar input {
-                width: 80%;
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            footer a {
+                display: block;
+                margin: 10px 0;
             }
         }
     </style>
