@@ -6,7 +6,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIM Genius: Cheats, Mods, & Dev Tools</title>
     <style>
-        /* General Styling */
+        /* General Styling */<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nex Network AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff3d00;
+            letter-spacing: 1px;
+        }
+
+        .model-selector {
+            margin: 20px 0;
+            font-size: 1.2em;
+            background-color: #333;
+            color: #ff9800;
+            padding: 10px;
+            border-radius: 10px;
+            width: 50%;
+            cursor: pointer;
+            border: 2px solid #ff9800;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 30px;
+            background-color: #252525;
+            color: #ff9800;
+            font-size: 1.1em;
+            border: 2px solid #ff9800;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff9800;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            color: #fff;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3d00;
+        }
+
+        .output-section {
+            margin-top: 30px;
+        }
+
+        #textOutput, #imageOutput img {
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #textOutput {
+            color: #ff9800;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            input[type="text"], button, .model-selector {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nex Network AI</h1>
+        <p>Generate text and images with cutting-edge AI models!</p>
+    </header>
+
+    <div>
+        <select class="model-selector" id="modelSelector">
+            <option value="gpt">GPT-4</option>
+            <option value="stable_diffusion">Stable Diffusion</option>
+            <option value="dalle">DALL·E</option>
+        </select>
+    </div>
+
+    <input type="text" id="userPrompt" placeholder="Enter your prompt here...">
+
+    <div>
+        <button onclick="generateText()">Generate Text</button>
+        <button onclick="generateImage()">Generate Image</button>
+    </div>
+
+    <div class="output-section">
+        <h2>Text Output</h2>
+        <div id="textOutput"></div>
+    </div>
+
+    <div class="output-section">
+        <h2>Image Output</h2>
+        <div id="imageOutput"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Nex Network AI. All rights reserved.</p>
+        <p><a href="/tos">Terms of Service</a> | <a href="/privacy">Privacy Policy</a> | <a href="/contactus">Contact Us</a></p>
+    </footer>
+
+    <script>
+        function generateText() {
+            const prompt = document.getElementById('userPrompt').value;
+            const model = document.getElementById('modelSelector').value;
+
+            fetch(`/generate_text`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt, model })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('textOutput').innerText = data.response;
+            });
+        }
+
+        function generateImage() {
+            const prompt = document.getElementById('userPrompt').value;
+            const model = document.getElementById('modelSelector').value;
+
+            fetch(`/generate_image`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt, model })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('imageOutput').innerHTML = `<img src="${data.image_url}" alt="Generated Image" style="width: 100%;">`;
+            });
+        }
+    </script>
+
+</body>
+</html>
+
         * {
             margin: 0;
             padding: 0;
