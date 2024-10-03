@@ -198,11 +198,33 @@
         function submitCode() {
             const code = document.getElementById('gimkitCode').value;
             if (code) {
-                // Redirect to the /answers page without hardcoding the domain name
-                window.location.href = `/answers?code=${code}`;
+                // Simulate fetching data from GimKit API
+                fetchGimKitAnswers(code)
+                    .then(() => {
+                        // Redirect to the /answers page with the code
+                        window.location.href = `/answers?code=${code}`;
+                    })
+                    .catch(() => {
+                        alert('Failed to retrieve answers. Please try again.');
+                    });
             } else {
                 alert('Please enter a valid GimKit code.');
             }
+        }
+
+        // Simulated function to fetch data from GimKit API
+        function fetchGimKitAnswers(code) {
+            // This function can later be expanded to fetch real data from a backend or API
+            return new Promise((resolve, reject) => {
+                // Simulating an API request delay
+                setTimeout(() => {
+                    if (code) {
+                        resolve(); // Successfully fetch answers
+                    } else {
+                        reject();  // Fail to fetch answers
+                    }
+                }, 1000);
+            });
         }
     </script>
 </body>
