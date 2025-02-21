@@ -3,100 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TypeMath</title>
+    <title>TypeMath - #1 typing website/title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff5722;
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
             min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
         }
+
         header {
-            background-color: #1F1F1F;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
         }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         nav ul {
+            display: flex;
+            justify-content: center;
             list-style: none;
-            display: flex;
-            justify-content: center;
-            padding: 0;
-            margin: 0;
+            gap: 2rem;
         }
-        nav li {
-            margin: 0 15px;
-        }
+
         nav a {
-            color: #ffffff;
+            color: var(--text-primary);
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
         }
+
         nav a:hover {
-            color: #ff5722;
+            color: var(--primary);
+            transform: translateY(-2px);
         }
+
         main {
-            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            justify-content: center;
         }
-        #typing-area {
-            margin: 20px 0;
-            padding: 20px;
-            border: 2px solid #ff5722;
-            border-radius: 10px;
-            background-color: #333333;
-            width: 80%;
-            max-width: 800px;
-            font-size: 1.5em;
-            text-align: center;
-            outline: none;
-            caret-color: #ff5722;
-            color: #ffffff;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        #progress-bar {
+
+        .typing-container {
+            background-color: var(--bg-card);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
             width: 100%;
-            height: 20px;
-            background-color: #555555;
-            margin: 20px 0;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
+            max-width: 800px;
         }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        #typing-area {
+            background-color: #2a2a2a;
+            border: 2px solid var(--primary);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            font-size: 1.25rem;
+            min-height: 150px;
+            resize: none;
+            color: var(--text-primary);
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        #typing-area:focus {
+            outline: none;
+            border-color: #ff8a65;
+        }
+
+        .progress-container {
+            margin: 1.5rem 0;
+        }
+
+        #progress-bar {
+            height: 8px;
+            background-color: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
         #progress-bar::after {
             content: '';
-            display: block;
-            width: 0;
-            height: 100%;
-            background-color: #ff5722;
             position: absolute;
             top: 0;
             left: 0;
-            transition: width 0.3s;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), #ff8a65);
+            transition: width 0.3s ease;
         }
-        #stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
-        #stats p {
-            margin: 0;
-        }
-        footer {
-            background-color: #1F1F1F;
-            padding: 10px 0;
+
+        .stat-item {
             text-align: center;
+        }
+
+        .stat-value {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: var(--bg-card);
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .typing-container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -104,28 +178,39 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Practice</a></li>
-                <li><a href="#">Leaderboard</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#" aria-label="Home">Home</a></li>
+                <li><a href="#" aria-label="Practice">Practice</a></li>
+                <li><a href="#" aria-label="Leaderboard">Leaderboard</a></li>
+                <li><a href="#" aria-label="About">About</a></li>
+                <li><a href="#" aria-label="Contact">Contact</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
-        <section id="typing">
+        <section class="typing-container">
             <h1>Welcome to TypeMath</h1>
-            <div id="typing-area" tabindex="0" contenteditable="true"></div>
-            <div id="progress-bar"></div>
-            <div id="stats">
-                <p>Speed: <span id="speed">0</span> WPM</p>
-                <p>Accuracy: <span id="accuracy">0</span>%</p>
+            <textarea id="typing-area" placeholder="Start typing here..." aria-label="Typing practice area"></textarea>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value" id="speed">0</span>
+                    <span class="stat-label">WPM</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="accuracy">0</span>
+                    <span class="stat-label">Accuracy %</span>
+                </div>
             </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 TypeMath</p>
+        <p>&copy; 2025 TypeMath. All rights reserved.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
