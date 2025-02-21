@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathLearning.art</title>
+    <title>TypeMath</title>
     <style>
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #121212;
-            color: #FFFFFF;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
         header {
-            background-color: #1F1F1F;
+            background-color: #202020;
             padding: 20px 0;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         nav ul {
             list-style: none;
@@ -31,13 +32,13 @@
             margin: 0 20px;
         }
         nav a {
-            color: #FFFFFF;
+            color: #ffffff;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s;
         }
         nav a:hover {
-            color: #FF0000;
+            color: #ff5722;
         }
         main {
             flex: 1;
@@ -50,12 +51,16 @@
         #typing-area {
             margin: 20px 0;
             padding: 20px;
-            border: 2px solid #FF0000;
+            border: 2px solid #ff5722;
             border-radius: 10px;
             background-color: #333333;
             width: 80%;
             max-width: 800px;
             font-size: 1.2em;
+            text-align: center;
+            outline: none;
+            caret-color: #ff5722;
+            color: #ffffff;
         }
         #progress-bar {
             width: 100%;
@@ -71,7 +76,7 @@
             display: block;
             width: 0;
             height: 100%;
-            background-color: #FF0000;
+            background-color: #ff5722;
             position: absolute;
             top: 0;
             left: 0;
@@ -81,12 +86,13 @@
             display: flex;
             justify-content: center;
             gap: 30px;
+            margin-top: 20px;
         }
         #stats p {
             margin: 0;
         }
         footer {
-            background-color: #1F1F1F;
+            background-color: #202020;
             padding: 10px 0;
             text-align: center;
         }
@@ -106,8 +112,8 @@
     </header>
     <main>
         <section id="typing">
-            <h1>Welcome to MathLearning.art</h1>
-            <div id="typing-area"></div>
+            <h1>Welcome to TypeMath</h1>
+            <div id="typing-area" tabindex="0" contenteditable="true"></div>
             <div id="progress-bar"></div>
             <div id="stats">
                 <p>Speed: <span id="speed">0</span> WPM</p>
@@ -116,7 +122,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 MathLearning.art</p>
+        <p>&copy; 2025 TypeMath</p>
     </footer>
     <script src="script.js"></script>
 </body>
