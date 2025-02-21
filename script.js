@@ -26,17 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
         startTime = Date.now();
         correctChars = 0;
         typedChars = 0;
-        document.addEventListener('keydown', handleTyping);
+        typingArea.addEventListener('input', handleTyping);
+        typingArea.focus();
     }
     function handleTyping(event) {
         const currentChar = typingArea.textContent[typedChars];
-        if (event.key === currentChar) {
+        const inputChar = event.data || event.inputType === 'deleteContentBackward' ? '' : typingArea.textContent[typedChars];
+        if (inputChar === currentChar) {
             correctChars++;
         }
         typedChars++;
         updateTypingStats();
         if (typedChars === typingArea.textContent.length) {
-            document.removeEventListener('keydown', handleTyping);
+            typingArea.removeEventListener('input', handleTyping);
             setTimeout(startTyping, 1000);
         }
     }
